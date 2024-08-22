@@ -1,20 +1,21 @@
-# Use an official Python image as the base
+# Usar uma imagem base do Python
 FROM python:3.9-slim
 
-# Set the working directory to /app
+# Definir o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copy the requirements file
+# Copiar o arquivo requirements.txt para o diretório de trabalho
 COPY requirements.txt .
 
-# Install the dependencies
+# Instalar as dependências necessárias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code
+# Copiar o modelo e o código para o diretório de trabalho
+COPY models/modelo_xgboost.joblib /app/models/
 COPY . /app/
 
-# Expose the port
+# Expor a porta que o Flask irá utilizar
 EXPOSE 8000
 
-# Run the command to start the development server
+# Comando para iniciar o servidor FastAPI
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

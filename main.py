@@ -7,7 +7,7 @@ import xgboost as xgb
 app = FastAPI()
 
 # Carregar o modelo XGBoost previamente treinado
-model = joblib.load("modelo_xgboost.joblib")
+model = joblib.load("models/modelo_xgboost.joblib")
 
 # Definir a estrutura dos dados de entrada
 class ModelInput(BaseModel):
